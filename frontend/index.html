@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tauri Frame Probe</title>
+<link rel="stylesheet" href="style.css">
+<main>
+  <h1>Tauri Frame Probe</h1>
+  <p>Measure requestAnimationFrame scheduling intervals. Keep the window visible and compare runs on the same display, at the same size and under similar load.</p>
+  <div class="controls">
+    <label>Display refresh rate <input id="hz" type="number" min="1" max="1000" value="60"> Hz</label>
+    <label>Sample each scene for <input id="seconds" type="number" min="5" max="120" value="15"> seconds</label>
+    <button id="start">Run all three scenes</button>
+    <button id="stop" disabled>Stop</button>
+    <button id="export" disabled>Export JSON</button>
+  </div>
+  <p id="status">Ready. Each scene warms up for 2 seconds before sampling.</p>
+  <div class="metrics"><strong id="fps">— FPS</strong><span id="interval">— ms / frame</span><span id="mode">Not started</span></div>
+  <div id="stage"><canvas id="canvas"></canvas><div id="dom"></div></div>
+  <table><thead><tr><th>Scene</th><th>Average FPS</th><th>P50 ms</th><th>P95 ms</th><th>P99 ms</th><th>Long intervals*</th><th>Status</th></tr></thead><tbody id="rows"></tbody></table>
+  <p class="note">* Percentage of rAF intervals exceeding 1.5 times the target frame budget; this is not a measured dropped-frame count. Idle measures callbacks only, Canvas draws 200 particles, and DOM updates the transforms of 200 elements. The statistics panel updates once per second. Hiding the window cancels the run; focus changes are recorded.</p>
+  <p class="note">This test cannot isolate GTK3, WebKitGTK, GPU or compositor bottlenecks, and does not measure frames actually presented on the display. Serve the frontend in a browser for a comparison on the same machine.</p>
+  <pre id="environment"></pre>
+</main>
+<script type="module" src="app.js"></script>
+</html>

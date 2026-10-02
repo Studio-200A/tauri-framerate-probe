@@ -1,0 +1,12 @@
+node_modules/
+.cache/
+.local-deps/
+src-tauri/target/
+src-tauri/gen/
+results/
+**/frame-probe-*.json
+**/frames-*.json
+.research/
+.agents/
+.codex/
+.aws/

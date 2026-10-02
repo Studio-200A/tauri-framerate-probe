@@ -1,0 +1,13 @@
+{
+  "name": "tauri-frame-probe",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "bash scripts/local-env.sh node node_modules/@tauri-apps/cli/tauri.js build --no-bundle",
+    "start": "bash scripts/local-env.sh src-tauri/target/release/tauri-frame-probe",
+    "dev": "bash scripts/local-env.sh node node_modules/@tauri-apps/cli/tauri.js dev",
+    "test:metrics": "node --test tests/metrics.test.mjs",
+    "results": "node scripts/summarize-results.mjs"
+  },
+  "devDependencies": { "@tauri-apps/cli": "^2" }
+}
